@@ -1,0 +1,98 @@
+Windows Registry Editor Version 5.00
+ 
+    [HKEY_CLASSES_ROOT\*\shell\VSCode]
+    @="Open with Code"
+    "Icon"="D:\\software\\Microsoft VS Code\\Code.exe"
+ 
+    [HKEY_CLASSES_ROOT\*\shell\VSCode\command]
+    @="\"D:\\software\\Microsoft VS Code\\Code.exe\" \"%1\""
+ 
+    Windows Registry Editor Version 5.00
+ 
+    [HKEY_CLASSES_ROOT\Directory\shell\VSCode]
+    @="Open with Code"
+    "Icon"="D:\\software\\Microsoft VS Code\\Code.exe"
+ 
+    [HKEY_CLASSES_ROOT\Directory\shell\VSCode\command]
+    @="\"D:\\software\\Microsoft VS Code\\Code.exe\" \"%V\""
+ 
+    Windows Registry Editor Version 5.00
+ 
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode]
+    @="Open with Code"
+    "Icon"="D:\\software\\Microsoft VS Code\\Code.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode\command]
+    @="\"D:\\software\\Microsoft VS Code\\Code.exe\" \"%V\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\*\shell\HBuilderX]
+    @="用HBuilderX打开"
+    "Icon"="D:\\software\\HBuilderX\\HBuilderX.exe"
+
+    [HKEY_CLASSES_ROOT\*\shell\HBuilderX\command]
+    @="\"D:\\software\\HBuilderX\\HBuilderX.exe\" \"%1\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\Directory\shell\HBuilderX]
+    @="用HBuilderX打开"
+    "Icon"="D:\\software\\HBuilderX\\HBuilderX.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\shell\HBuilderX\command]
+    @="\"D:\\software\\HBuilderX\\HBuilderX.exe\" \"%V\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\*\shell\IntelliJ IDEA]
+    @="用IntelliJ IDEA打开"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\IntelliJ IDEA\\bin\\idea64.exe"
+
+    [HKEY_CLASSES_ROOT\*\shell\IntelliJ IDEA\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\IntelliJ IDEA\\bin\\idea64.exe\" \"%1\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\Directory\shell\IntelliJ IDEA]
+    @="用IntelliJ IDEA打开"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\IntelliJ IDEA\\bin\\idea64.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\shell\IntelliJ IDEA\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\IntelliJ IDEA\\bin\\idea64.exe\" \"%V\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\*\shell\PhpStorm]
+    @="用PhpStorm打开"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\PhpStorm\\bin\\phpstorm64.exe"
+
+    [HKEY_CLASSES_ROOT\*\shell\PhpStorm\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\PhpStorm\\bin\\phpstorm64.exe\" \"%1\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\Directory\shell\PhpStorm]
+    @="用PhpStorm打开"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\PhpStorm\\bin\\phpstorm64.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\shell\PhpStorm\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\PhpStorm\\bin\\phpstorm64.exe\" \"%V\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\*\shell\WebStorm]
+    @="用WebStorm打开"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe"
+
+    [HKEY_CLASSES_ROOT\*\shell\WebStorm\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe\" \"%1\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\Directory\shell\WebStorm]
+    @="用WebStorm打开"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\shell\WebStorm\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe\" \"%V\"" 
