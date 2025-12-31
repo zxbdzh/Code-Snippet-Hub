@@ -1,0 +1,17 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\*\shell\HBuilderX]
+[-HKEY_CLASSES_ROOT\Directory\shell\HBuilderX]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\HBuilderX]
+
+[-HKEY_CLASSES_ROOT\*\shell\IntelliJ IDEA]
+[-HKEY_CLASSES_ROOT\Directory\shell\IntelliJ IDEA]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\IntelliJ IDEA]
+
+[-HKEY_CLASSES_ROOT\*\shell\PhpStorm]
+[-HKEY_CLASSES_ROOT\Directory\shell\PhpStorm]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\PhpStorm]
+
+[-HKEY_CLASSES_ROOT\*\shell\WebStorm]
+[-HKEY_CLASSES_ROOT\Directory\shell\WebStorm]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\WebStorm]

@@ -28,7 +28,7 @@ Windows Registry Editor Version 5.00
     Windows Registry Editor Version 5.00
 
     [HKEY_CLASSES_ROOT\*\shell\HBuilderX]
-    @="用HBuilderX打开"
+    @="Open with HBuilderX"
     "Icon"="D:\\software\\HBuilderX\\HBuilderX.exe"
 
     [HKEY_CLASSES_ROOT\*\shell\HBuilderX\command]
@@ -37,7 +37,7 @@ Windows Registry Editor Version 5.00
     Windows Registry Editor Version 5.00
 
     [HKEY_CLASSES_ROOT\Directory\shell\HBuilderX]
-    @="用HBuilderX打开"
+    @="Open with HBuilderX"
     "Icon"="D:\\software\\HBuilderX\\HBuilderX.exe"
 
     [HKEY_CLASSES_ROOT\Directory\shell\HBuilderX\command]
@@ -45,8 +45,17 @@ Windows Registry Editor Version 5.00
 
     Windows Registry Editor Version 5.00
 
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\HBuilderX]
+    @="Open with HBuilderX"
+    "Icon"="D:\\software\\HBuilderX\\HBuilderX.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\HBuilderX\command]
+    @="\"D:\\software\\HBuilderX\\HBuilderX.exe\" \"%V\""
+
+    Windows Registry Editor Version 5.00
+
     [HKEY_CLASSES_ROOT\*\shell\IntelliJ IDEA]
-    @="用IntelliJ IDEA打开"
+    @="Open with IntelliJ IDEA"
     "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\IntelliJ IDEA\\bin\\idea64.exe"
 
     [HKEY_CLASSES_ROOT\*\shell\IntelliJ IDEA\command]
@@ -55,7 +64,7 @@ Windows Registry Editor Version 5.00
     Windows Registry Editor Version 5.00
 
     [HKEY_CLASSES_ROOT\Directory\shell\IntelliJ IDEA]
-    @="用IntelliJ IDEA打开"
+    @="Open with IntelliJ IDEA"
     "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\IntelliJ IDEA\\bin\\idea64.exe"
 
     [HKEY_CLASSES_ROOT\Directory\shell\IntelliJ IDEA\command]
@@ -63,8 +72,17 @@ Windows Registry Editor Version 5.00
 
     Windows Registry Editor Version 5.00
 
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\IntelliJ IDEA]
+    @="Open with IntelliJ IDEA"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\IntelliJ IDEA\\bin\\idea64.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\IntelliJ IDEA\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\IntelliJ IDEA\\bin\\idea64.exe\" \"%V\""
+
+    Windows Registry Editor Version 5.00
+
     [HKEY_CLASSES_ROOT\*\shell\PhpStorm]
-    @="用PhpStorm打开"
+    @="Open with PhpStorm"
     "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\PhpStorm\\bin\\phpstorm64.exe"
 
     [HKEY_CLASSES_ROOT\*\shell\PhpStorm\command]
@@ -73,7 +91,7 @@ Windows Registry Editor Version 5.00
     Windows Registry Editor Version 5.00
 
     [HKEY_CLASSES_ROOT\Directory\shell\PhpStorm]
-    @="用PhpStorm打开"
+    @="Open with PhpStorm"
     "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\PhpStorm\\bin\\phpstorm64.exe"
 
     [HKEY_CLASSES_ROOT\Directory\shell\PhpStorm\command]
@@ -81,8 +99,17 @@ Windows Registry Editor Version 5.00
 
     Windows Registry Editor Version 5.00
 
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\PhpStorm]
+    @="Open with PhpStorm"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\PhpStorm\\bin\\phpstorm64.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\PhpStorm\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\PhpStorm\\bin\\phpstorm64.exe\" \"%V\""
+
+    Windows Registry Editor Version 5.00
+
     [HKEY_CLASSES_ROOT\*\shell\WebStorm]
-    @="用WebStorm打开"
+    @="Open with WebStorm"
     "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe"
 
     [HKEY_CLASSES_ROOT\*\shell\WebStorm\command]
@@ -91,8 +118,17 @@ Windows Registry Editor Version 5.00
     Windows Registry Editor Version 5.00
 
     [HKEY_CLASSES_ROOT\Directory\shell\WebStorm]
-    @="用WebStorm打开"
+    @="Open with WebStorm"
     "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe"
 
     [HKEY_CLASSES_ROOT\Directory\shell\WebStorm\command]
+    @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe\" \"%V\""
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\WebStorm]
+    @="Open with WebStorm"
+    "Icon"="C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe"
+
+    [HKEY_CLASSES_ROOT\Directory\Background\shell\WebStorm\command]
     @="\"C:\\Users\\Admin\\AppData\\Local\\Programs\\WebStorm\\bin\\webstorm64.exe\" \"%V\"" 
