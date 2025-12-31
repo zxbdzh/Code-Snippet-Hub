@@ -1,0 +1,17 @@
+Windows Registry Editor Version 5.00
+
+; 文件夹右键菜单 - open in iflow
+[HKEY_CLASSES_ROOT\Directory\shell\openiniflow]
+@="open in iflow"
+"Icon"="cmd.exe,0"
+
+[HKEY_CLASSES_ROOT\Directory\shell\openiniflow\command]
+@="cmd.exe /k \"cd /d \"%V\" && iflow\""
+
+; 文件夹背景右键菜单 - open in iflow
+[HKEY_CLASSES_ROOT\Directory\Background\shell\openiniflow]
+@="open in iflow"
+"Icon"="cmd.exe,0"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\openiniflow\command]
+@="cmd.exe /k \"cd /d \"%V\" && iflow\""
