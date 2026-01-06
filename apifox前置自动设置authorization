@@ -1,65 +1,78 @@
-// Pre-request Script
+// Pre-request Script（异步版，彻底解决响应为空问题）
 
 // 获取环境变量中的Token和过期时间
 const accessToken = pm.environment.get("ACCESS_TOKEN");
 const accessTokenExpires = pm.environment.get("ACCESS_TOKEN_EXPIRES");
 
-// 定义登录请求方法
-function sendLoginRequest() {
+// 定义登录请求方法（异步）
+async function sendLoginRequest() {
     console.log("Token不存在/已过期，正在调用登录接口...");
 
     const loginRequest = {
-        // 注意：登录接口本身可能也需要 Token，这里我们直接使用硬编码的 token
-        // 这是一个临时的、用于获取正式 Token 的凭证
-        url: "http://mark-api.com/v1/GameConfigApi/game_user_login?xxxxxxxxxxxxxxxxxxxxxx",
+        url: "http://mark-api.com/v1/GameConfigApi/game_user_login?xxxxxxxxxxxxx",
         method: "GET"
     };
 
-    // 使用 pm.sendRequest 发送同步请求
-    try {
-        const res = pm.sendRequest(loginRequest);
-        const jsonData = res.json();
-        
-        // 关键：提取data内的实际Token字段（请替换为你看到的字段名）
-        const newAccessToken = jsonData.data.token; // 例如：data.token
-        const newExpires = jsonData.data.expires; // 若有过期时间，同步提取
+    // 异步发送请求（Postman推荐用法，响应稳定）
+    return new Promise((resolve, reject) => {
+        pm.sendRequest(loginRequest, (err, response) => {
+            if (err) {
+                // 网络错误（如接口不可达、超时）
+                console.error("登录请求网络失败:", err);
+                reject(new Error(`网络错误：${err.message}`));
+                return;
+            }
 
-        if (!newAccessToken) {
-            console.error("登录响应中未找到Token，响应data:", jsonData.data);
-            throw new Error("登录接口的data内无Token字段，请检查字段名");
-        }
+            try {
+                // 异步模式下，response是标准Response对象，用json()方法直接解析（无需手动处理）
+                const jsonData = response.json();
+                console.log("登录接口返回:", jsonData);
 
-        // 写入环境变量
-        pm.environment.set("ACCESS_TOKEN", newAccessToken);
-        if (newExpires) {
-            // 将过期时间转换为毫秒时间戳，便于比较
-            const expiresTimestamp = new Date(newExpires).getTime();
-            pm.environment.set("ACCESS_TOKEN_EXPIRES", expiresTimestamp);
-        }
-        console.log("Token已刷新:", newAccessToken);
+                // 校验响应格式（和你实际返回的JSON匹配）
+                if (jsonData.status !== 1 || !jsonData.data || !jsonData.data.token) {
+                    reject(new Error(`登录接口返回异常，响应: ${JSON.stringify(jsonData)}`));
+                    return;
+                }
 
-    } catch (err) {
-        console.error("登录请求失败:", err);
-        throw new Error("登录失败，无法获取Token");
-    }
-}
+                // 提取Token（和实际返回字段一致：data.token）
+                const newAccessToken = jsonData.data.token;
+                // 提取服务器时间作为过期时间参考（若接口无expires，用服务器时间+1小时作为默认过期时间）
+                const serverTime = jsonData.server_time || new Date().getTime();
+                const defaultExpires = serverTime + 3600 * 1000; // 1小时后过期
 
-// 检查Token有效性
-// 注意：pm.sendRequest是同步的，所以这里的逻辑可以按顺序执行
-if (!accessToken || (accessTokenExpires && accessTokenExpires <= new Date().getTime())) {
-    sendLoginRequest();
-}
+                // 写入环境变量
+                pm.environment.set("ACCESS_TOKEN", newAccessToken);
+                pm.environment.set("ACCESS_TOKEN_EXPIRES", defaultExpires);
+                console.log("Token已刷新:", newAccessToken);
+                console.log("Token过期时间（1小时后）:", new Date(defaultExpires).toLocaleString());
 
-// 应用Token到当前请求的Header中
-const finalToken = pm.environment.get("ACCESS_TOKEN");
-if (finalToken) {
-    // 设置 Authorization 头，格式通常为 "<token>"
-    pm.request.headers.add({
-        key: "Authorization",
-        value: `${finalToken}`
+                resolve(newAccessToken);
+            } catch (parseErr) {
+                // JSON解析错误（如响应不是JSON）
+                console.error("登录响应解析失败:", parseErr);
+                reject(new Error(`响应解析错误：${parseErr.message}，原始响应: ${response.text()}`));
+            }
+        });
     });
-    console.log("已在请求头中设置Authorization: [token]");
-} else {
-    // 如果经过刷新后仍然没有Token，则抛出错误，中断请求
-    throw new Error("无有效Token，请求无法发送");
 }
+
+// 主逻辑（异步执行，确保登录请求完成后再设置Header）
+(async () => {
+    // 检查Token有效性
+    if (!accessToken || (accessTokenExpires && accessTokenExpires <= new Date().getTime())) {
+        await sendLoginRequest(); // 等待登录请求完成
+    }
+
+    // 应用Token到请求头
+    const finalToken = pm.environment.get("ACCESS_TOKEN");
+    if (finalToken) {
+        pm.request.headers.remove("Authorization"); // 避免重复添加
+        pm.request.headers.add({
+            key: "Authorization",
+            value: finalToken // 若接口要求Bearer格式，改为 `Bearer ${finalToken}`
+        });
+        console.log("已在请求头中设置Authorization Token");
+    } else {
+        throw new Error("无有效Token，请求无法发送");
+    }
+})();
