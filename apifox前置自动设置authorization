@@ -1,0 +1,65 @@
+// Pre-request Script
+
+// 获取环境变量中的Token和过期时间
+const accessToken = pm.environment.get("ACCESS_TOKEN");
+const accessTokenExpires = pm.environment.get("ACCESS_TOKEN_EXPIRES");
+
+// 定义登录请求方法
+function sendLoginRequest() {
+    console.log("Token不存在/已过期，正在调用登录接口...");
+
+    const loginRequest = {
+        // 注意：登录接口本身可能也需要 Token，这里我们直接使用硬编码的 token
+        // 这是一个临时的、用于获取正式 Token 的凭证
+        url: "http://mark-api.com/v1/GameConfigApi/game_user_login?xxxxxxxxxxxxxxxxxxxxxx",
+        method: "GET"
+    };
+
+    // 使用 pm.sendRequest 发送同步请求
+    try {
+        const res = pm.sendRequest(loginRequest);
+        const jsonData = res.json();
+        
+        // 关键：提取data内的实际Token字段（请替换为你看到的字段名）
+        const newAccessToken = jsonData.data.token; // 例如：data.token
+        const newExpires = jsonData.data.expires; // 若有过期时间，同步提取
+
+        if (!newAccessToken) {
+            console.error("登录响应中未找到Token，响应data:", jsonData.data);
+            throw new Error("登录接口的data内无Token字段，请检查字段名");
+        }
+
+        // 写入环境变量
+        pm.environment.set("ACCESS_TOKEN", newAccessToken);
+        if (newExpires) {
+            // 将过期时间转换为毫秒时间戳，便于比较
+            const expiresTimestamp = new Date(newExpires).getTime();
+            pm.environment.set("ACCESS_TOKEN_EXPIRES", expiresTimestamp);
+        }
+        console.log("Token已刷新:", newAccessToken);
+
+    } catch (err) {
+        console.error("登录请求失败:", err);
+        throw new Error("登录失败，无法获取Token");
+    }
+}
+
+// 检查Token有效性
+// 注意：pm.sendRequest是同步的，所以这里的逻辑可以按顺序执行
+if (!accessToken || (accessTokenExpires && accessTokenExpires <= new Date().getTime())) {
+    sendLoginRequest();
+}
+
+// 应用Token到当前请求的Header中
+const finalToken = pm.environment.get("ACCESS_TOKEN");
+if (finalToken) {
+    // 设置 Authorization 头，格式通常为 "<token>"
+    pm.request.headers.add({
+        key: "Authorization",
+        value: `${finalToken}`
+    });
+    console.log("已在请求头中设置Authorization: [token]");
+} else {
+    // 如果经过刷新后仍然没有Token，则抛出错误，中断请求
+    throw new Error("无有效Token，请求无法发送");
+}
